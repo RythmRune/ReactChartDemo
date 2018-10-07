@@ -18,8 +18,8 @@ module.exports = {
             },
         ]
     },
-    // plugins: [
-    //     new UglifyJsPlugin({ sourceMap: true })
-    // ],
-    // devtool: 'source-map'
+    plugins: [
+        new UglifyJsPlugin({ sourceMap: true })
+    ],
+    devtool: 'source-map'
 }

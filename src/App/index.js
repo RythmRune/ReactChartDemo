@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 
 import chart from 'chart.js';
 import style from './data/style.json'
-import { genData, getProductRealizedSum, getPortfolioSum } from './utils/database'
+import { genData, getProductRealizedSum } from './utils/database'
 
 class App extends React.Component {
 
@@ -21,25 +21,25 @@ class App extends React.Component {
         //     reducers,
         //     applyMiddleware(thunkMiddleware, loggerMiddleware)
         // );
+        const data = genData(500);
         this.state = {
-            data: genData(500),
+            data: data,
             // step: 0,
             show: {
                 step: 0,
-                data: getProductRealizedSum(this.state.data),
+                data: getProductRealizedSum(data),
             }
         }
         // state 0: init
         // state 1: portfolio
         // state 2: table
         this.drawTotalAbstract = this.drawTotalAbstract.bind(this);
-        // this.drawProductAbstract = this.drawProductAbstract.bind(this);
-        // this.drawDetail = this.drawDetail.bind(this);
+        this.drawProductAbstract = this.drawProductAbstract.bind(this);
+        this.drawDetail = this.drawDetail.bind(this);
     }
 
     drawTotalAbstract = () => {
-
-        const node = this.node1;
+        let node = this.node1;
         new Chart(node, {
             type: 'horizontalBar',
             data: {
@@ -54,16 +54,16 @@ class App extends React.Component {
             },
             options: {
                 onClick: (event, item) => {
-                    let portfolio = item[0]._view.label;
-                    this.setState({ show: { step: 1, data: getPortfolioSum(this.state.data, portfolio) } });
+                    // let portfolio = item[0]._view.label;
+                    // this.setState({ show: { step: 1, data: getPortfolioSum(this.state.data, portfolio) } });
                 }
             }
         });
     }
 
-    drawProductAbstract = () => {
+    drawProductAbstract = () => { }
 
-    }
+    drawDetail = () => { }
 
     componentDidMount() {
         if (this.state.show.step === 0)
@@ -91,7 +91,7 @@ class App extends React.Component {
         return (
             // <Provider store={this.store}>
             <div>
-                {(this.state.step === 0) ? < canvas ref={node1 => (this.node1 = node1)} ></canvas > : ""}
+                {(this.state.show.step === 0) ? < canvas ref={node1 => (this.node1 = node1)} ></canvas > : ""}
                 < canvas ref={node2 => (this.node2 = node2)} ></canvas >
                 < canvas ref={node3 => (this.node3 = node3)} ></canvas >
             </div>
