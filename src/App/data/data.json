@@ -1,0 +1,17 @@
+{
+    "portfolio": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+    ],
+    "type": [
+        "funds",
+        "bonds",
+        "stocks",
+        "options",
+        "futures"
+    ]
+}
