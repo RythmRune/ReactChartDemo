@@ -77,7 +77,7 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.step === 0)
+        if (this.state.show.step === 0)
             this.drawTotalAbstract();
 
         // if (this.state.step === 1)
